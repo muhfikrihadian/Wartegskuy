@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Anggota
+    Wartegskuy
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   
@@ -230,21 +230,21 @@
     -->
       <div class="logo">
         <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          Anggota Tim
+          Wartegskuy
         </a>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item active  ">
-            <a class="nav-link" href="{{ route('beranda') }}">
-              <i class="material-icons">dashboard</i>
-              <p>Dashboard</p>
+            <a class="nav-link" href="{{ route('user.beranda') }}">
+              <i class="material-icons">forum</i>
+              <p>Pesan Makanan</p>
             </a>
           </li>
           <li class="nav-item active  ">
-            <a class="nav-link" href="{{ route('tambah') }}">
-              <i class="material-icons">add</i>
-              <p>Tambah Anggota</p>
+            <a class="nav-link" href="{{ route('user.laporan') }}">
+              <i class="material-icons">assignment</i>
+              <p>Laporan</p>
             </a>
           </li>
         </ul>

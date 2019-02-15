@@ -16,8 +16,8 @@ class CreateMasakansTable extends Migration
         Schema::create('masakans', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama');
-            $table->string('harga');
-            $table->enum('status_masakan', ['Proses','Unproses']);
+            $table->integer('harga');
+            $table->enum('status_masakan', ['Proses','Unproses'])->nullable();
             $table->timestamps();
         });
     }

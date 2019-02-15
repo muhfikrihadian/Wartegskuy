@@ -17,7 +17,7 @@ class CreateDetailOrdersTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('id_order');
             $table->unsignedInteger('id_masakan');
-            $table->text('keterangan');
+            $table->text('keterangan')->nullable();
             $table->timestamps();
         });
     }

@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.user')
 
 @section('content')
 <div class="content">
@@ -7,60 +7,43 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-primary">
-            <h4 class="card-title">Tambah Anggota</h4>
+            <h4 class="card-title">Pesan Masakan</h4>
           </div>
           <div class="card-body">
-            <form method="POST" action="{{ route('tambahProses') }}">
+            <form method="POST" action="#">
             {{ csrf_field() }}
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label class="bmd-label-floating">Nama</label>
-                    <input type="text" name="nama" class="form-control">
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label>Alamat</label>
-                    <div class="form-group">
-                      <label class="bmd-label-floating"></label>
-                      <textarea name="alamat" class="form-control" rows="1"></textarea>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                  <label for="exampleFormControlSelect1">Jenis Kelamin</label>
-                    <select name="jk" class="form-control" id="exampleFormControlSelect1">
-                      <option value="Laki-laki">Laki-laki</option>
-                      <option value="Perempuan">Perempuan</option>
+                  <label for="exampleFormControlSelect1">Nomor Meja</label>
+                    <select name="meja" class="form-control" id="exampleFormControlSelect1">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
-                  <label for="exampleFormControlSelect1">Status</label>
-                    <select name="status" class="form-control" id="exampleFormControlSelect1">
-                      <option value="Kawin">Kawin</option>
-                      <option value="Belum kawin">Belum kawin</option>
+                  <label for="exampleFormControlSelect1">Makanan</label>
+                    <select name="masakan" class="form-control" id="exampleFormControlSelect1">
+                    @foreach($masakan as $makanan)
+                      <option value="{{ $makanan->id }}">{{ $makanan->nama }}</option>
+                      @endforeach
                     </select>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label class="bmd-label-floating">Hobi</label>
-                    <input type="text" name="hobi" class="form-control">
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                  <label for="exampleFormControlSelect1">Jurusan</label>
-                    <select name="jurusan" class="form-control" id="exampleFormControlSelect1">
-                      <option value="RPL">RPL</option>
-                      <option value="AP">AP</option>
-                      <option value="AK">AK</option>
-                      <option value="PM">PM</option>
-                    </select>
+                    <label class="bmd-label-floating">Keterangan</label>
+                    <input type="text" name="keterangan" class="form-control">
                   </div>
                 </div>
               </div>

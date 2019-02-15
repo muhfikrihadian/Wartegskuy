@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->string('no_meja');
             $table->unsignedInteger('id_user');
-            $table->text('keterangan');
+            $table->text('keterangan')->nullable();
             $table->enum('status_order', ['Lunas','Belum Bayar']);
             $table->timestamps();
         });
