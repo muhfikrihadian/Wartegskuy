@@ -43,9 +43,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 			Route::post('/tambah', 'AdminController@tambahMasakan')->name('tambahMasakan');
 			Route::post('/hapus', 'AdminController@hapusUser')->name('hapusUser');
-			// Route::post('/pembayaran', 'AdminController@pembayaranProses')->name('pembayaranProses');
-			// Route::post('/check', 'AdminController@checkProses')->name('checkProses');
-			Route::post('/laporan', 'AdminController@keLaporan')->name('keLaporan');
+			Route::post('/laporan', 'AdminController@keLaporan')->name('keProses');
 		});
 	});
 });

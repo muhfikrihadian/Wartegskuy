@@ -22,6 +22,7 @@
               </div>
               @foreach($orderan as $order)
               <input type="hidden" name="idorder" value="{{$order->id}}">
+              <input type="hidden" name="iduser" value="{{$order->id_user}}">
               @endforeach
               <button type="submit" class="btn btn-primary">Bayar</button>
               <div class="clearfix"></div>

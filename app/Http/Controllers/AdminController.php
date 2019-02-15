@@ -25,15 +25,7 @@ class AdminController extends Controller
     	return view('Admin.users', $data);
     }
     public function kasir(){
-        // $a = Order::where('status_order','Belum Bayar')->get();
-        // foreach ($a as $b)
-        // $c = DetailOrder::where('id',$b->id)->get();
-        // foreach ($c as $d)
-        // $e = Masakan::where('id_masakan',$d->id_order)->get();
-        // foreach ($e as $f)
-
     	$data['report'] = Order::where('status_order','Belum Bayar')->orderBy('id', 'desc')->get();
-        // $data['masakan'] = Masakan::where('status_order','Belum Bayar')->orderBy('id', 'desc')->get();
 
     	return view('Admin.kasir', $data);
     }
@@ -42,7 +34,8 @@ class AdminController extends Controller
         return view('Admin.tambah', $data);
     }
     public function laporan(){
-        return view('Admin.laporan');
+        $data['laporan'] = Order::where('status_order','Lunas')->get();
+        return view('Admin.laporan', $data);
     }
     public function tambahMasakan(Request $r){
         $tambah = new Masakan;
@@ -62,7 +55,7 @@ class AdminController extends Controller
         return redirect()->route('admin.users');   
     }
     public function exportPdf(){
-        $data = Transaksi::orderBy('id', 'desc')->get();
+        $data['laporan'] = Order::where('status_order','Lunas')->orderBy('id', 'desc')->get();
         $pdf = PDF::loadView('Admin.report', $data);
         $pdf->save(storage_path().'_filename.pdf');
         return $pdf->download('report.pdf');
@@ -72,34 +65,20 @@ class AdminController extends Controller
         foreach ($a as $b)
         $c = Masakan::where('id',$b->id)->get();
         foreach ($c as $e)
-        $dataharga = $e->harga;
-        $data['kembali'] = $r->total += $harga;
+        $harga = $e->harga;
+        $data['bayar'] = $r->total;
+        $data['kembali'] = $r->total -= $harga;
         $data['masakan'] = Masakan::where('id', $e->id)->get();
         $data['orderan'] = Order::where('id', $r->idorder)->get();
-        return redirect()->route('admin.laporan', $data);   
+
+        $pembayaran = new Transaksi;
+        $pembayaran->id_user = $r->iduser;
+        $pembayaran->id_order = $r->idorder;
+        $pembayaran->total = $harga;
+        $pembayaran->save();
+
+        DB::table('orders')->where('id', $r->idorder)->update(['status_order' => 'Lunas']);
+
+        return view('Admin.check', $data);
     }
-    // public function checkProses(Request $r){
-    //     $a = DetailOrder::where('id',$r->idorder)->get();
-    //     foreach ($a as $b)
-    //     $c = Masakan::where('id',$b->id)->get();
-    //     foreach ($c as $e)
-
-
-    //     $data['masakan'] = Masakan::where('id', $e->id)->get();
-    //     $data['orderan'] = Order::where('id', $r->idorder)->get();
-    //     $duit = $r->
-    //     $data['pembayaran'] = $r->
-    //     return view('Admin.check', $data);
-    // }
-    // public function pembayaranProses(Request $r){
-    //     DB::table('orders')->where('id', $r->idorder)->update(['status_order' => 'Lunas']);
-
-    //     $bayar = new Transaksi;
-    //     $bayar->id_user = $r->iduser;
-    //     $bayar->id_order = $r->idorder;
-    //     $bayar->total = $r->total;
-    //     $bayar->save();
-
-    //     return redirect()->route('admin.kasir');   
-    // }
 }
