@@ -20,20 +20,6 @@ class AdminSeeder extends Seeder
             'password' => bcrypt('adminsatu'),
          ],
          [
-           'name' => 'Muhammad Fikri Hadian',
-            'username' => 'muhfikrihadian',
-            'email' => 'muhfikrihadian@gmail.com',
-            'role' => 'User',
-            'password' => bcrypt('emefha1491'),
-         ],
-         [
-           'name' => 'Bilqis Dasnita Fitri',
-            'username' => 'bilqis',
-            'email' => 'bilqis@gmail.com',
-            'role' => 'User',
-            'password' => bcrypt('emefha1491'),
-         ],
-         [
            'name' => 'Admin Dua',
             'username' => 'admindua',
             'email' => 'admin2@gmail.com',
